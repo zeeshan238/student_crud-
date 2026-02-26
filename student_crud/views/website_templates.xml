@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Student List Template -->
+    <template id="student_list_template" name="Student List">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_title p-4 bg-primary text-white text-center">
+                    <div class="container">
+                        <h1>Our Students</h1>
+                        <p class="lead">View all registered students in our system.</p>
+                    </div>
+                </section>
+                
+                <section class="mt-4">
+                    <div class="container">
+                        <div class="row">
+                            <t t-foreach="students" t-as="student">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card shadow-sm border-0 h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary"><t t-esc="student.name"/></h5>
+                                            <p class="card-text text-muted mb-1">
+                                                <strong>Age:</strong> <t t-esc="student.age"/>
+                                            </p>
+                                            <p class="card-text text-muted mb-3">
+                                                <strong>Gender:</strong> <t t-esc="student.gender"/>
+                                            </p>
+                                            <a t-attf-href="/students/#{student.id}" class="btn btn-outline-primary btn-sm rounded-pill">
+                                                View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <!-- Student Detail Template -->
+    <template id="student_detail_template" name="Student Details">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="p-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                                    <div class="bg-primary p-4 text-white">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h2 class="mb-0 fw-bold"><t t-esc="student.name"/></h2>
+                                            <span class="badge bg-white text-primary rounded-pill px-3 py-2">Student Profile</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-5">
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <h6 class="text-uppercase text-muted small fw-bold mb-3">Personal Information</h6>
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-2"><i class="fa fa-calendar-o text-primary me-2"></i> <strong>Age:</strong> <t t-esc="student.age"/></li>
+                                                    <li class="mb-2"><i class="fa fa-venus-mars text-primary me-2"></i> <strong>Gender:</strong> <t t-esc="student.gender"/></li>
+                                                    <li class="mb-2"><i class="fa fa-birthday-cake text-primary me-2"></i> <strong>DOB:</strong> <t t-esc="student.dob"/></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="text-uppercase text-muted small fw-bold mb-3">Contact Details</h6>
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-2"><i class="fa fa-envelope-o text-primary me-2"></i> <t t-esc="student.email or 'N/A'"/></li>
+                                                    <li class="mb-2"><i class="fa fa-phone text-primary me-2"></i> <t t-esc="student.phone or 'N/A'"/></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4">
+                                            <h6 class="text-uppercase text-muted small fw-bold mb-3">Address</h6>
+                                            <p class="text-muted"><t t-esc="student.address or 'No address provided.'"/></p>
+
+                                        </div>
+                                        <hr class="my-4"/>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-muted small">Admitted on: <t t-esc="student.admission_date"/></span>
+                                            <a href="/students" class="btn btn-primary rounded-pill px-4">Back to List</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>
